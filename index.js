@@ -1,10 +1,23 @@
+// index.js
 function addingEventListener() {
-  const input = document.getElementById('button');
+  const btn = document.getElementById('button');
 
-  function clickAlert() {
+  function clickAlert(event) {
     alert('I was clicked!');
   }
 
-  input.addEventListener('click', clickAlert);
-}function addingEventListener() {
+  // Attach the event listener
+  btn.addEventListener('click', clickAlert);
+
+  // Return the handler so we can remove it later
+  return { btn, clickAlert };
 }
+
+const { btn, clickAlert } = addingEventListener();
+
+// Example: remove the listener after 10 seconds
+setTimeout(() => {
+  btn.removeEventListener('click', clickAlert);
+  console.log('Click listener removed');
+}, 10000);
+
